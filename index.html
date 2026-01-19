@@ -10,12 +10,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* 💥 Logo más grande por defecto */
+        /* 💥 REGLA AGREGADA/MODIFICADA: Logo más grande por defecto */
         header .logo-img { 
-            height: 110px; 
+            height: 110px; /* Tamaño del logo: Aumentado */
         }
 
-        /* ======= Textos principales ======= */
+        /* ======= Textos principales (ajustados más pequeños) ======= */
         .text h2 {
             font-size: 2.2em;
             font-weight: 800;
@@ -57,21 +57,25 @@
         }
         .text a:hover { letter-spacing: 3px; }
 
-        /* ======= Estructura y Fondo ======= */
+        /* -------------------------
+        FORZAR SCROLL y STACKING
+        ------------------------- */
         html, body {
             height: 100%;
             scroll-behavior: smooth;
             overflow-x: hidden;
             overflow-y: auto !important;
-            -webkit-overflow-scrolling: touch;
+            -webkit-overflow-scrolling: touch; /* para iOS */
         }
 
+        /* Asegura que el showcase quede por delante del fondo */
         .showcase {
             position: relative;
             z-index: 1;
             min-height: 100vh;
         }
 
+        /* Fondo animado detrás de todo */
         .bg-waves {
             position: absolute;
             inset: 0; 
@@ -81,6 +85,7 @@
             pointer-events: none !important;
         }
 
+        /* Overlay semitransparente */
         .overlay {
             position: absolute;
             inset: 0;
@@ -88,25 +93,70 @@
             pointer-events: none;
         }
 
+        /* Botones flotantes */
         .contact-buttons {
             position: fixed;
             z-index: 60; 
         }
 
-        /* ======= Media Queries ======= */
+        /* ===== Sección Quiénes Somos: pantalla completa y POR DELANTE ===== */
+        .quienes-somos {
+            position: relative;
+            z-index: 5;
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 3.5rem 1rem;
+            background: linear-gradient(180deg, #245892, #161a1f);
+            color: #fff;
+            box-sizing: border-box;
+            pointer-events: auto;
+        }
+
+        .container-somos {
+            max-width: 900px;
+            text-align: center;
+        }
+
+        /* Tipografía del bloque */
+        .quienes-somos h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: .6rem;
+        }
+
+        .quienes-somos p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #ddd;
+        }
+
+
+        /* ------------------------------------------------
+        ADAPTACIÓN A MÓVILES Y TABLETS (Media Queries)
+        ------------------------------------------------ */
+
         @media (max-width: 1024px) {
-            header .logo-img { height: 90px; }
+             /* Ajuste del logo para pantallas medianas */
+            header .logo-img { 
+                height: 90px; 
+            }
         }
         
         @media (max-width: 768px) {
+            /* ===== MENÚ MÓVIL ESTILO “Servicios” - Se aplica a 768px o menos ===== */
             header {
                 display: flex;
-                flex-direction: column;
+                flex-direction: column; /* Apila logo y nav */
                 align-items: center;
+                /* Agrega padding superior/inferior si es necesario */
             }
 
             header .logo-img {
-                height: 70px;
+                height: 70px; /* Logo más pequeño en móvil */
             }
 
             nav {
@@ -121,12 +171,13 @@
                 display: flex;
                 justify-content: center;
                 gap: 0.5em;
-                flex-wrap: wrap;
+                flex-wrap: wrap; /* Permite que los botones se envuelvan */
             }
 
             nav ul li button {
-                padding: 0.5em 1em;
+                padding: 0.5em 1em; /* Botones más pequeños */
                 font-size: 0.9em;
+                /* Mantener estilos de borde y color para el menú */
                 border: 2px solid rgba(255,255,255,0.5);
                 border-radius: 0.8em;
                 color: #fff;
@@ -134,21 +185,37 @@
             }
 
             nav ul li button:hover,
+            nav ul li button:active,
             nav ul li button.active {
                 border-color: #00aaff;
                 box-shadow: 0 0 15px #00aaff, 0 0 30px #00aaff inset;
                 background: rgba(0,170,255,0.1);
             }
 
-            /* Se eliminó la referencia al botón de teléfono */
-            .contact-buttons .gmail {
+            /* Ocultar botón de Gmail y Teléfono en móviles pequeños si molesta */
+            .contact-buttons .gmail,
+            .contact-buttons .phone {
                 display: none !important;
             }
 
-            .text h2 { font-size: 1.8em !important; }
-            .text h3 { font-size: 2.5em !important; }
-            .text p { font-size: 0.95em !important; }
-            .text a { font-size: 13px !important; }
+            /* Ajuste de tipografía en teléfonos */
+            .text h2 {
+                font-size: 1.8em !important;
+                line-height: 1.1em;
+            }
+            .text h3 {
+                font-size: 2.5em !important;
+                line-height: 1.1em;
+            }
+            .text p {
+                font-size: 0.95em !important;
+                line-height: 1.4em;
+            }
+            .text a {
+                font-size: 13px !important;
+                padding: 0.9em 2em !important;
+                border-radius: 1em !important;
+            }
         }
     </style>
 </head>
@@ -187,6 +254,9 @@
         </div>
 
         <div class="contact-buttons">
+            <a href="tel:+50224704912" class="contact-btn phone" title="Teléfono">
+                <i class="fas fa-phone"></i>
+            </a>
             <a href="https://t.me/eldiegocomgt" class="contact-btn telegram" target="_blank" title="Telegram">
                 <i class="fab fa-telegram-plane"></i>
             </a>
