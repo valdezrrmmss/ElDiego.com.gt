@@ -16,6 +16,9 @@
         }
 
         /* ======= Textos principales ======= */
+        .text {
+            padding-top: 50px; /* Espacio base */
+        }
         .text h2 {
             font-size: 2.2em;
             font-weight: 800;
@@ -70,6 +73,9 @@
             position: relative;
             z-index: 1;
             min-height: 100vh;
+            display: flex;
+            align-items: center; /* Centra el contenido verticalmente en PC */
+            padding: 0 50px;
         }
 
         .bg-waves {
@@ -90,8 +96,31 @@
 
         .contact-buttons {
             position: fixed;
-            z-index: 60; 
+            bottom: 30px;
+            right: 30px;
+            z-index: 9999; 
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
+        
+        .contact-btn {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        /* Colores de botones */
+        .telegram { background: #0088cc; }
+        .gmail { background: #db4437; }
+        .facebook { background: #3b5998; }
+        .whatsapp { background: #25d366; }
 
         /* ======= Media Queries ======= */
         @media (max-width: 1024px) {
@@ -103,52 +132,49 @@
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+                background: rgba(0,0,0,0.8);
+                width: 100%;
+                position: fixed;
+                top: 0;
+                z-index: 1000;
+                padding: 10px 0;
             }
 
             header .logo-img {
-                height: 70px;
+                height: 60px;
             }
 
             nav {
                 width: 100%;
-                margin-top: 1em;
+                margin-top: 0.5em;
             }
 
             nav ul {
-                list-style: none;
-                padding: 0;
-                margin: 0;
                 display: flex;
                 justify-content: center;
-                gap: 0.5em;
+                gap: 5px;
                 flex-wrap: wrap;
             }
 
             nav ul li button {
-                padding: 0.5em 1em;
-                font-size: 0.9em;
-                border: 2px solid rgba(255,255,255,0.5);
-                border-radius: 0.8em;
-                color: #fff;
-                background: transparent;
+                padding: 5px 10px;
+                font-size: 0.8em;
             }
 
-            nav ul li button:hover,
-            nav ul li button.active {
-                border-color: #00aaff;
-                box-shadow: 0 0 15px #00aaff, 0 0 30px #00aaff inset;
-                background: rgba(0,170,255,0.1);
-            }
-
-            /* Se eliminó la referencia al botón de teléfono */
+            /* 1. CORRECCIÓN BOTÓN GMAIL: Ahora SI se muestra en celular */
             .contact-buttons .gmail {
-                display: none !important;
+                display: flex !important; /* Cambiado de 'none' a 'flex' */
             }
 
-            .text h2 { font-size: 1.8em !important; }
-            .text h3 { font-size: 2.5em !important; }
-            .text p { font-size: 0.95em !important; }
-            .text a { font-size: 13px !important; }
+            /* 2. CORRECCIÓN POSICIÓN TEXTO: Lo bajamos para que no lo tapen los botones */
+            .text {
+                padding-top: 250px !important; 
+                text-align: center;
+            }
+
+            .text h2 { font-size: 1.5em !important; }
+            .text h3 { font-size: 2.2em !important; }
+            .text p { font-size: 0.9em !important; padding: 0 10px; }
         }
     </style>
 </head>
@@ -198,7 +224,7 @@
                 <i class="fab fa-facebook-f"></i>
             </a>
             <a href="https://wa.me/50224704912?text=Buen%20día,%20me%20gustaría%20recibir%20información%20sobre%20sus%20productos%20y%20servicios."
-                class="contact-btn whatsapp whatsapp-right" target="_blank" title="WhatsApp">
+                class="contact-btn whatsapp" target="_blank" title="WhatsApp">
                 <i class="fab fa-whatsapp"></i>
             </a>
         </div>
@@ -206,7 +232,6 @@
     </section>
 
     <script>
-        // Resalta automáticamente el botón activo según la URL
         const buttons = document.querySelectorAll('nav ul li button');
         const current = window.location.pathname.split("/").pop();
         buttons.forEach(btn => {
@@ -215,7 +240,5 @@
         });
     </script>
 
-    <script src="main.js"></script>
-    
 </body>
 </html>
