@@ -12,12 +12,11 @@
         /* ==== RESET ==== */
         * { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI', sans-serif; }
 
-        /* Estilo general del body */
         body {
             background: linear-gradient(135deg, #0d2d3a, #072433, #084766, #0b2030);
         }
 
-        /* ==== HEADER TRANSPARENTE ==== */
+        /* ==== HEADER ==== */
         header {
             position: fixed;
             top: 0;
@@ -27,20 +26,18 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: transparent;
+            background: rgba(0,0,0,0.6); /* Agregado fondo para mejor lectura */
             z-index: 9999;
             transition: opacity 0.6s ease, transform 0.6s ease;
             opacity: 1;
         }
 
-        /* Estado oculto del header */
         header.hidden {
             opacity: 0;
             transform: translateY(-100%);
             pointer-events: none;
         }
 
-        /* LOGO */
         header .logo-img { 
             height: 110px; 
             cursor: pointer;
@@ -61,23 +58,18 @@
             transition:0.5s ease;
         }
         nav ul li button:hover,
-        nav ul li button:focus,
         nav ul li button.active {
             color:#ffffff;
             background:#008cff;
             border:1px solid #008cff;
-            text-shadow:0 0 5px #ffffff,0 0 10px #ffffff,0 0 20px #ffffff;
-            box-shadow:0 0 5px #008cff,0 0 20px #008cff,0 0 50px #008cff,0 0 100px #008cff;
+            text-shadow:0 0 5px #ffffff;
+            box-shadow:0 0 20px #008cff;
         }
 
         /* ==== FONDO ANIMADO ==== */
         .bg-waves {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
+            top: 0; left: 0; width: 100%; height: 100%;
             z-index: -1;
             background: linear-gradient(45deg, #0d2d3a, #0b2030, #084766, #072433);
             background-size: 600% 600%;
@@ -93,21 +85,9 @@
         .products-section {
             max-width:1200px;
             margin:0 auto;
-            padding:180px 20px 50px; /* Espacio arriba para el header */
+            padding:180px 20px 50px; 
             position:relative;
             z-index:10;
-        }
-        /* ESTILO APLICADO AL NUEVO TÍTULO CON GLOW */
-        .products-section h2 {
-            text-align: center;
-            color: #ffffff; /* Color principal blanco */
-            margin-bottom: 30px; 
-            font-size: 2.2em;
-            /* EFECTO DE LUZ NEÓN */
-            text-shadow: 
-                0 0 5px #14105e,
-                0 0 10px #00ccff,
-                0 0 20px #14105e;
         }
 
         .gallery {
@@ -126,59 +106,56 @@
             cursor:pointer;
             width:100%;
         }
-        .frame:hover { transform:scale(1.03); box-shadow:0 10px 30px rgba(255,255,255,0.15); }
+        .frame:hover { transform:scale(1.03); box-shadow:0 10px 30px rgba(0,140,255,0.4); }
         .frame img { width:100%; height:220px; object-fit:cover; }
-        .caption { font-size:1rem; color:#ccc; padding:0.5rem; }
+        .caption { font-size:1rem; color:#ccc; padding:0.5rem; font-weight: bold; }
 
         .product-note { text-align:center; color:#ddd; font-size:1rem; margin-top:3rem; line-height:1.6; }
         .product-note strong { color:#23b4f5; }
 
         /* ==== MODAL ==== */
-        .modal { display:none; position:fixed; z-index:99999; left:0; top:0; width:100%; height:100%; overflow:auto; background-color: rgba(10,10,20,0.85); padding-top:50px; }
-        .modal-content { margin:auto; display:block; width:90%; max-width:500px; height:auto; object-fit:contain; border:5px solid #ccc; border-radius:10px; box-shadow:0 0 40px rgba(35,116,245,0.712); margin-bottom:20px; }
-        #modal-caption { text-align:center; margin:1rem auto; font-size:1rem; color:#ddd; width:90%; max-width:800px; }
-        .close { position:absolute; top:20px; right:35px; color:#fff; font-size:35px; font-weight:bold; cursor:pointer; }
-        .close:hover { color:#f9b233; }
+        .modal { display:none; position:fixed; z-index:99999; left:0; top:0; width:100%; height:100%; overflow:auto; background-color: rgba(10,10,20,0.9); padding-top:50px; }
+        .modal-content { margin:auto; display:block; width:90%; max-width:500px; border:5px solid #ccc; border-radius:10px; box-shadow:0 0 40px rgba(35,116,245,0.7); }
+        #modal-caption { text-align:center; margin:1rem auto; font-size:1.2rem; color:#fff; }
+        .close { position:absolute; top:20px; right:35px; color:#fff; font-size:40px; font-weight:bold; cursor:pointer; }
 
         /* ==== BOTÓN WHATSAPP ==== */
         .contact-buttons { position:fixed; bottom:50px; right:50px; z-index:10000; }
         .contact-btn { display:flex; justify-content:center; align-items:center; width:70px; height:70px; border-radius:50%; background: #25d366; color:#fff; text-decoration:none; font-size:2rem; transition: transform 0.3s, box-shadow 0.3s; }
-        .contact-btn:hover { transform: scale(1.2); box-shadow:0 0 20px #25d366,0 0 40px #25d366; }
+        .contact-btn:hover { transform: scale(1.2); box-shadow:0 0 20px #25d366; }
         
-        /* MEDIA QUERIES */
+        /* ==== MEDIA QUERIES (CORRECCIÓN PARA MÓVIL) ==== */
         @media (max-width: 768px) {
             header {
                 flex-direction: column;
-                padding: 10px 10px; 
-                background: rgba(0,0,0,0.8); 
+                padding: 10px 5px; 
+                background: rgba(0,0,0,0.9); 
             }
             header .logo-img { 
-                height: 70px; 
-                margin-bottom: 5px;
+                height: 65px; 
+                margin-bottom: 10px;
             }
             nav ul {
                 flex-wrap: wrap;
                 justify-content: center;
-                gap: 5px;
+                gap: 8px;
             }
             nav ul li button {
-                padding: 5px 8px; 
-                font-size: 13px;
+                padding: 6px 10px; 
+                font-size: 12px;
             }
-             .products-section {
-                padding-top: 230px; /* Aumentado para móvil */
+
+            /* BAJAMOS LAS MARCAS PARA QUE NO SE TRASLAPEN */
+            .products-section {
+                padding-top: 280px !important; 
             }
-            .products-section h2 {
-                font-size: 1.8em; /* Ajuste para móvil */
-            }
+
             .contact-buttons { 
                 bottom: 20px; 
                 right: 20px; 
             }
             .contact-btn { 
-                width: 60px; 
-                height: 60px; 
-                font-size: 1.5rem; 
+                width: 60px; height: 60px; font-size: 1.5rem; 
             }
         }
     </style>
@@ -201,45 +178,41 @@
     </header>
 
     <section class="products-section">
-       
-        
         <div class="gallery">
-            <div class="frame"><img src="HIKVISION.PNG" alt="CAMARAS HIKVISION" /><div class="caption">HIKVISION</div></div>
-            <div class="frame"><img src="ZTK.png" alt="UBIQUITIS" /><div class="caption">ZKTECO</div></div>
-            <div class="frame"><img src="XTECH.PNG" alt="BIOMÉTRICOS ZKTECO" /><div class="caption">XTECH</div></div>
-            <div class="frame"><img src="DELL.png" alt="BIOMÉTRICOS HIKVISION" /><div class="caption">DELL</div></div>
-            <div class="frame"><img src="EPSON.png" alt="UPS - APC" /><div class="caption">EPSON</div></div>
-            <div class="frame"><img src="SCPOS.PNG" alt="LINKYS" /><div class="caption">SCPOS</div></div>
-            <div class="frame"><img src="LINKSY.PNG" alt="IMPRESORAS EPSON" /><div class="caption">LINKYS</div></div>
-            <div class="frame"><img src="SENOR.PNG" alt="IMPRESORAS SENOR" /><div class="caption">SENOR</div></div>
-            <div class="frame"><img src="LINET.png" alt="IMPRESORA SCPOS" /><div class="caption">LINET</div></div>
-            <div class="frame"><img src="UBIQUITIS.png" alt="COMPUTADORAS PORTATILES" /><div class="caption">UBIQUITI</div></div>
-            <div class="frame"><img src="MI.PNG" alt="BRACKETS" /><div class="caption">XIAOMI</div></div>
-            <div class="frame"><img src="APC.PNG" alt="MONITORES" /><div class="caption">APC</div></div>
+            <div class="frame"><img src="HIKVISION.PNG" alt="HIKVISION" /><div class="caption">HIKVISION</div></div>
+            <div class="frame"><img src="ZTK.png" alt="ZKTECO" /><div class="caption">ZKTECO</div></div>
+            <div class="frame"><img src="XTECH.PNG" alt="XTECH" /><div class="caption">XTECH</div></div>
+            <div class="frame"><img src="DELL.png" alt="DELL" /><div class="caption">DELL</div></div>
+            <div class="frame"><img src="EPSON.png" alt="EPSON" /><div class="caption">EPSON</div></div>
+            <div class="frame"><img src="SCPOS.PNG" alt="SCPOS" /><div class="caption">SCPOS</div></div>
+            <div class="frame"><img src="LINKSY.PNG" alt="LINKYS" /><div class="caption">LINKYS</div></div>
+            <div class="frame"><img src="SENOR.PNG" alt="SENOR" /><div class="caption">SENOR</div></div>
+            <div class="frame"><img src="LINET.png" alt="LINET" /><div class="caption">LINET</div></div>
+            <div class="frame"><img src="UBIQUITIS.png" alt="UBIQUITI" /><div class="caption">UBIQUITI</div></div>
+            <div class="frame"><img src="MI.PNG" alt="XIAOMI" /><div class="caption">XIAOMI</div></div>
+            <div class="frame"><img src="APC.PNG" alt="APC" /><div class="caption">APC</div></div>
         </div>
 
         <div class="product-note">
-            <p>
-                Si no encuentra algún producto en la lista, consúltenos mediante WhatsApp para ofrecerle una solución personalizada.  
-                Nuestro compromiso es brindar <strong>calidad, disponibilidad y atención inmediata</strong> a cada cliente.
-            </p>
+            <p>Si no encuentra algún producto en la lista, consúltenos mediante WhatsApp para ofrecerle una solución personalizada.<br> 
+            Nuestro compromiso es brindar <strong>calidad, disponibilidad y atención inmediata</strong>.</p>
         </div>
     </section>
 
     <div id="image-modal" class="modal">
         <span class="close">&times;</span>
-        <img class="modal-content" id="modal-img" alt="Productos de la marca">
+        <img class="modal-content" id="modal-img">
         <div id="modal-caption"></div>
     </div>
 
     <div class="contact-buttons">
-        <a href="https://wa.me/50224704912" class="contact-btn whatsapp whatsapp-right" target="_blank" title="WhatsApp">
+        <a href="https://wa.me/50224704912" class="contact-btn" target="_blank" title="WhatsApp">
             <i class="fab fa-whatsapp"></i>
         </a>
     </div>
 
     <script>
-        /* ==== MODAL - LÓGICA DE APERTURA Y CIERRE ==== */
+        // Lógica de Modal
         const frames = document.querySelectorAll(".frame");
         const modal = document.getElementById("image-modal");
         const modalImg = document.getElementById("modal-img");
@@ -248,11 +221,8 @@
 
         frames.forEach(frame => {
             frame.addEventListener("click", () => {
-                // Obtiene la marca y la limpia de espacios
                 const caption = frame.querySelector(".caption").textContent.trim();
-
                 let productoImg = "";
-                // Mapeo de la marca al archivo de imagen
                 switch(caption) {
                     case "HIKVISION": productoImg = "1.png"; break;
                     case "ZKTECO": productoImg = "2.png"; break;
@@ -266,57 +236,31 @@
                     case "UBIQUITI": productoImg = "UBI.jpg"; break;
                     case "XIAOMI": productoImg = "111.png"; break;
                     case "APC": productoImg = "12.png"; break;
-                    default:
-                        console.error("No se encontró una imagen de producto para la marca:", caption);
-                        productoImg = "";
-                        break;
                 }
-
-                // Muestra el modal si se encontró la imagen
                 if (productoImg) {
                     modalImg.src = productoImg;
-                    modalImg.alt = "Productos de " + caption;
                     modalCaption.textContent = "Catálogo de Productos: " + caption;
                     modal.style.display = "block";
-                    document.body.style.overflow = 'hidden'; // Evita el scroll en el fondo
+                    document.body.style.overflow = 'hidden';
                 }
             });
         });
 
-        // Cierra el modal al hacer clic en la 'x'
-        closeModal.addEventListener("click", () => {
-            modal.style.display = "none";
-            document.body.style.overflow='';
-        });
+        closeModal.onclick = () => { modal.style.display = "none"; document.body.style.overflow=''; };
+        window.onclick = (e) => { if(e.target === modal){ modal.style.display='none'; document.body.style.overflow=''; }};
 
-        // Cierra el modal al hacer clic fuera de la imagen
-        window.addEventListener("click", (e) => {
-            if(e.target === modal){
-                modal.style.display='none';
-                document.body.style.overflow='';
-            }
-        });
-
-        /* ==== HEADER SCROLL - MEJORA DE COMPORTAMIENTO ==== */
+        // Header Scroll
         let lastScrollTop = 0;
         const header = document.getElementById("main-header");
-        const scrollThreshold = 50; // Umbral de píxeles para empezar a ocultar
-
         window.addEventListener("scroll", function() {
             let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-            
-            // Oculta solo si bajamos Y hemos pasado el umbral inicial
-            if(currentScroll > lastScrollTop && currentScroll > scrollThreshold){ 
+            if(currentScroll > lastScrollTop && currentScroll > 80){ 
                 header.classList.add("hidden");
-            } 
-            // Muestra si subimos O estamos al inicio de la página
-            else if (currentScroll < lastScrollTop || currentScroll <= scrollThreshold) {
+            } else {
                 header.classList.remove("hidden");
             }
-
             lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
         });
     </script>
-
 </body>
 </html>
