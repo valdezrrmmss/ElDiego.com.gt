@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="icon" type="image/png" href="ICO.png">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Quiénes somos? - ElDiego.com</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ==== RESET ==== */
+        * { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI', sans-serif; }
+
+        body {
+            background: linear-gradient(135deg, #4577c1, #072433, #084766, #0b2030);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ==== HEADER FIJO Y TRANSPARENTE (ESTILO ESCRITORIO) ==== */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background: rgba(0,0,0,0.6);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.5s ease;
+        }
+
+        /* Header oculto al hacer scroll */
+        header.scrolled {
+            transform: translateY(-100%);
+            background-color: rgba(0,0,0,0);
+            pointer-events: none;
+            opacity: 0;
+        }
+
+        /* Header visible en la parte superior */
+        header.at-top {
+            transform: translateY(0);
+            pointer-events: auto;
+            opacity: 1;
+        }
+
+        /* TAMAÑO DEL LOGO (ESCRITORIO) */
+        header .logo-img { 
+            height: 110px;
+            cursor: pointer; 
+        }
+
+        nav ul { display: flex; gap: 15px; list-style: none; }
+        nav ul li button {
+            padding: 8px 15px;
+            border-radius: 5px;
+            background: transparent;
+            border: 1px solid #fff;
+            color: #fff;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        nav ul li button:hover, nav ul li button.active {
+            background: #008cff;
+            border-color: #008cff;
+            color: #fff;
+        }
+
+        /* ==== CONTENIDO (Centrado) ==== */
+        .content {
+            flex: 1;
+            display: flex;
+            justify-content: center; /* Centra el contenedor horizontalmente */
+            align-items: center; /* Centra el contenedor verticalmente */
+            text-align: center;
+            padding: 150px 20px 50px 20px; 
+        }
+
+        .content .text-container {
+            max-width: 800px;
+            width: 100%; /* Asegura que tome el ancho disponible en móvil */
+            /* 💡 CAMBIO DE FONDO: Ahora es azul oscuro semi-transparente (más claro que el negro 0.5) */
+            background: rgba(17, 45, 99, 0.7); 
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0,140,255,0.5);
+            min-height: 40vh; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #23b4f5;
+        }
+
+        .content p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #ddd;
+        }
+        
+        /* 💥 REFINAMIENTO PARA MÓVILES (IPHONE) */
+        @media (max-width: 768px) {
+            
+            /* Ajuste del Header y Logo para compactar */
+            header {
+                flex-direction: column; /* Apila logo y nav */
+                padding: 10px 10px; /* Reducción de padding */
+            }
+            header .logo-img { 
+                height: 70px; /* Logo MÁS PEQUEÑO para pantallas móviles */
+                margin-bottom: 5px;
+            }
+            
+            /* Ajuste del Menú de Navegación */
+            nav ul {
+                flex-wrap: wrap; 
+                justify-content: center;
+                gap: 5px; 
+            }
+            nav ul li button {
+                padding: 5px 8px; /* Botones más pequeños */
+                font-size: 13px;
+            }
+
+            /* Ajuste del Contenido (Texto) */
+            .content {
+                /* Aumentamos el padding para compensar el header más compacto */
+                padding: 150px 10px 30px 10px; 
+            }
+            .content .text-container {
+                padding: 20px; /* Reducción de padding interno */
+            }
+            .content h1 {
+                font-size: 1.8rem;
+            }
+            .content p {
+                font-size: 1rem;
+            }
+            
+            /* Botón de WhatsApp más cerca de la esquina */
+            .contact-buttons { 
+                bottom: 20px; 
+                right: 20px; 
+            }
+        }
+
+        /* ==== FONDO ANIMADO (SIN CAMBIOS) ==== */
+        .bg-waves {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #0d2d3a, #0b2030, #084766, #072433);
+            background-size: 600% 600%;
+            animation: gradientShift 20s ease infinite;
+            z-index: -1;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* ==== BOTÓN WHATSAPP (SIN CAMBIOS) ==== */
+        .contact-buttons { position: fixed; bottom: 50px; right: 50px; z-index: 1000; }
+        .contact-btn {
+            display:flex; justify-content:center; align-items:center;
+            width: 70px; height: 70px;
+            border-radius: 50%; background: #25d366; color: #fff;
+            font-size: 2rem; text-decoration: none;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .contact-btn:hover { transform: scale(1.2); box-shadow: 0 0 20px #25d366,0 0 40px #25d366; }
+    </style>
+</head>
+<body>
+    <div class="bg-waves"></div>
+
+    <header class="at-top">
+        <h2 class="logo"><img src="LOGO (2).png" alt="Logo Empresa" class="logo-img"></h2>
+        <nav>
+            <ul>
+                <li><button onclick="window.location.href='index.html'">Información</button></li>
+                <li><button onclick="window.location.href='servicios.html'">Servicios</button></li>
+                <li><button onclick="window.location.href='productos.html'">Marcas</button></li>
+                <li><button class="active">¿Quiénes somos?</button></li>
+                <li><button onclick="window.location.href='contacto.html'">Contacto</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="content">
+        <div class="text-container">
+            <h1>¿Quiénes somos?</h1>
+            <p>
+                En <strong>ElDiego.com</strong> nos dedicamos a proveer soluciones tecnológicas integrales para empresas y particulares. 
+                Nuestro objetivo es ofrecer productos de calidad, servicios confiables y atención personalizada que garantice la satisfacción de nuestros clientes. 
+                Con años de experiencia en el mercado, combinamos innovación, tecnología y compromiso para estar siempre a la vanguardia. 
+                Creemos en la mejora continua y en establecer relaciones duraderas basadas en confianza y profesionalismo.
+            </p>
+        </div>
+    </section>
+
+    <div class="contact-buttons">
+        <a href="https://wa.me/50224704912" class="contact-btn" target="_blank" title="WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <script>
+        // Header que se oculta al bajar y aparece al subir
+        let lastScrollTop = 0;
+        const header = document.querySelector('header');
+
+        window.addEventListener('scroll', function() {
+            let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (currentScroll > lastScrollTop && currentScroll > 50) { // Bajando y no estamos justo en la cima
+                header.classList.add('scrolled');
+                header.classList.remove('at-top');
+            } else if (currentScroll <= lastScrollTop || currentScroll <= 50) { // Subiendo o estamos cerca de la cima
+                header.classList.remove('scrolled');
+                header.classList.add('at-top');
+            }
+            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // evita negativos
+        });
+    </script>
+</body>
+</html>

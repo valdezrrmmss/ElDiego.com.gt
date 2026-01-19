@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="icon" type="image/png" href="ICO.png">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios - ElDiego.com</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ==== RESET ==== */
+        * { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI', sans-serif; }
+
+        body {
+            background: linear-gradient(135deg, #0d2d3a, #072433, #084766, #0b2030);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ==== HEADER FIJO (ESCRITORIO) ==== */
+        header {
+            position: fixed; 
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 40px 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0,0,0,0.6); 
+            z-index: 1000;
+            transition: opacity 0.6s ease, transform 0.6s ease;
+            opacity: 1;
+        }
+
+        header.hidden {
+            opacity: 0;
+            transform: translateY(-100%);
+            pointer-events: none;
+        }
+
+        /* LOGO (ESCRITORIO) */
+        header .logo-img { 
+            height: 110px; 
+            cursor: pointer; 
+        }
+        
+        nav ul { display: flex; gap: 15px; list-style: none; }
+        nav ul li button {
+            padding: 8px 15px;
+            border-radius: 5px;
+            background: transparent;
+            border: 1px solid #fff;
+            color: #fff;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        nav ul li button:hover, nav ul li button.active {
+            background: #008cff;
+            border-color: #008cff;
+            color: #fff;
+        }
+
+        /* ==== CONTENIDO - ESPACIO PARA HEADER EN ESCRITORIO ==== */
+        .services-wrapper {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            justify-content: center;
+            gap: 20px;
+            /* Espacio para el header grande de escritorio */
+            padding-top: 180px; 
+            padding-left: 20px;
+            padding-right: 20px; 
+            padding-bottom: 50px; 
+            position: relative;
+            z-index: 10;
+        }
+
+        .services-wrapper .text {
+            flex: 1;
+            color: #fff;
+            max-width: 900px;
+            text-align: left; 
+        }
+        .services-wrapper .text h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #23b4f5;
+        }
+        .services-wrapper .text p {
+            font-size: 1.1em;
+            line-height: 1.6em;
+            margin: 15px 0;
+            text-align: justify;
+        }
+        .services-wrapper .text ul {
+            list-style: disc;
+            margin-left: 40px;
+            text-align: initial; 
+        }
+        .services-wrapper .text ul li {
+            margin: 10px 0;
+            font-size: 1.1em;
+        }
+
+        /* Imagen */
+        .services-image {
+            flex: 0 0 450px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .services-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 0 20px #00aaff, 0 0 40px #00aaff, 0 0 60px #00aaff;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { box-shadow: 0 0 15px #00aaff, 0 0 25px #00aaff; }
+            to  { box-shadow: 0 0 30px #00ccff, 0 0 50px #00ccff; }
+        } 
+
+        /* ==== MEDIA QUERIES (ADAPTACIÓN Y CORRECCIÓN MÓVIL) ==== */
+        
+        @media (max-width: 1024px) {
+            header {
+                padding: 20px 20px;
+            }
+            .services-wrapper {
+                padding-top: 150px; 
+            }
+            header .logo-img { 
+                height: 90px; 
+            }
+        }
+
+        @media (max-width: 768px) {
+            /* Header Compacto en Móvil */
+            header {
+                flex-direction: column;
+                padding: 10px 5px; 
+                background: rgba(0,0,0,0.9); /* Más oscuro para legibilidad */
+            }
+            header .logo-img { 
+                height: 60px; /* Logo más pequeño en móvil */
+                margin-bottom: 10px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 8px;
+            }
+            nav ul li button {
+                padding: 6px 10px; 
+                font-size: 12px;
+            }
+            
+            /* AJUSTE CLAVE: Empujamos todo el contenido hacia abajo en móviles */
+            .services-wrapper {
+                flex-direction: column;
+                align-items: center;
+                gap: 30px;
+                /* Aumentado para que el título "Servicios" no choque con los botones */
+                padding-top: 280px !important; 
+            }
+
+            .services-image {
+                flex: unset;
+                width: 90%;
+                order: 2; /* La imagen pasa abajo del texto en móvil */
+            }
+            .services-wrapper .text {
+                padding: 0 10px;
+                order: 1;
+            }
+            .services-wrapper .text h2 {
+                font-size: 1.5rem; /* Título un poco más pequeño para que quepa bien */
+            }
+            .services-wrapper .text ul {
+                margin-left: 20px;
+            }
+
+            .contact-buttons { 
+                bottom: 20px; 
+                right: 20px; 
+            }
+        }
+
+        /* ==== FONDO Y WHATSAPP ==== */
+        .bg-waves {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(45deg, #0d2d3a, #0b2030, #084766, #072433);
+            background-size: 600% 600%;
+            animation: gradientShift 20s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .contact-buttons { position: fixed; bottom: 50px; right: 50px; z-index: 1000; }
+        .contact-btn {
+            display:flex; justify-content:center; align-items:center;
+            width: 70px; height: 70px;
+            border-radius: 50%; background: #25d366; color: #fff;
+            font-size: 2rem; text-decoration: none;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .contact-btn:hover { transform: scale(1.2); box-shadow: 0 0 20px #25d366,0 0 40px #25d366; }
+    </style>
+</head>
+<body>
+
+    <div class="bg-waves"></div>
+
+    <header id="main-header">
+        <h2 class="logo"><img src="LOGO (2).png" alt="Logo Empresa" class="logo-img"></h2>
+        <nav>
+            <ul>
+                <li><button onclick="window.location.href='index.html'">Información</button></li>
+                <li><button class="active">Servicios</button></li>
+                <li><button onclick="window.location.href='productos.html'">Marcas</button></li>
+                <li><button onclick="window.location.href='marcas.html'">¿Quienes somos?</button></li>
+                <li><button onclick="window.location.href='contacto.html'">Contacto</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="services-wrapper">
+        <div class="text">
+            <h2>Servicios de ELDIEGO.COM</h2>
+            <p>Ofrecemos soluciones completas en <strong>Tecnologías de la Información (TI)</strong> para optimizar tu infraestructura tecnológica:</p>
+            <ul>
+                <li><strong>Redes:</strong> instalación y configuración de redes cableadas e inalámbricas.</li>
+                <li><strong>Limpieza de computadoras:</strong> eliminación de virus, spyware, polvo y respaldo de información.</li>
+                <li><strong>Mantenimiento de servidores:</strong> optimización de rendimiento y seguridad.</li>
+                <li><strong>Instalación de equipos:</strong> servidores de impresión, discos duros, switches y routers.</li>
+                <li><strong>Compartición de Internet:</strong> configuración de conexiones seguras y eficientes.</li>
+                <li><strong>Asesoría en TI:</strong> soporte y recomendaciones personalizadas.</li>
+                <li><strong>Hosting de páginas web:</strong> alojamiento confiable en asociación con proveedores líderes.</li>
+            </ul>
+            <p>Todos nuestros servicios utilizan equipos y materiales de primera calidad, garantizando satisfacción y excelente relación costo-beneficio.</p>
+            <p>Si necesitas un servicio no listado, <strong>contáctanos</strong> para encontrar la solución ideal para tu empresa.</p>
+        </div>
+
+        <div class="services-image">
+            <img src="IMAGEN.png" alt="Nuestros servicios">
+        </div>
+    </div>
+
+    <div class="contact-buttons">
+        <a href="https://wa.me/50224704912" class="contact-btn" target="_blank" title="WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <script>
+        let lastScrollTop = 0;
+        const header = document.getElementById("main-header");
+
+        window.addEventListener("scroll", function() {
+            let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+            if(currentScroll > lastScrollTop && currentScroll > 50){ 
+                header.classList.add("hidden");
+            } else if (currentScroll <= lastScrollTop || currentScroll <= 50) {
+                header.classList.remove("hidden");
+            }
+            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="icon" type="image/png" href="ICO.png">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElDiego.com</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* 💥 Logo más grande por defecto */
+        header .logo-img { 
+            height: 110px; 
+        }
+
+        /* ======= Textos principales ======= */
+        .text h2 {
+            font-size: 2.2em;
+            font-weight: 800;
+            color: #fff;
+            line-height: 1.1em;
+            text-transform: uppercase;
+        }
+        .text h3 {
+            font-size: 3.5em;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.1em;
+            text-transform: uppercase;
+        }
+        .text p {
+            font-size: 1em;
+            color: #fff;
+            margin: 20px 0;
+            font-weight: 400;
+            max-width: 700px;
+        }
+        .text a {
+            display: inline-block;
+            padding: 0.8em 2.5em;
+            font-size: 14px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: #fff;
+            background-color: rgb(76, 104, 165);
+            border: .25em solid rgb(79, 119, 153);
+            border-radius: 1em;
+            box-shadow:
+                0 0 1em .25em rgb(79, 119, 153),
+                0 0 4em 1em rgba(31, 73, 212, 0.781),
+                inset 0 0 .75em .25em #4f7799;
+            transition: all 0.3s;
+        }
+        .text a:hover { letter-spacing: 3px; }
+
+        /* ======= Estructura y Fondo ======= */
+        html, body {
+            height: 100%;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            overflow-y: auto !important;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .showcase {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+        }
+
+        .bg-waves {
+            position: absolute;
+            inset: 0; 
+            width:100%;
+            height: 100%;
+            z-index: -2 !important; 
+            pointer-events: none !important;
+        }
+
+        .overlay {
+            position: absolute;
+            inset: 0;
+            z-index: -1; 
+            pointer-events: none;
+        }
+
+        .contact-buttons {
+            position: fixed;
+            z-index: 60; 
+        }
+
+        /* ======= Media Queries ======= */
+        @media (max-width: 1024px) {
+            header .logo-img { height: 90px; }
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            header .logo-img {
+                height: 70px;
+            }
+
+            nav {
+                width: 100%;
+                margin-top: 1em;
+            }
+
+            nav ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                display: flex;
+                justify-content: center;
+                gap: 0.5em;
+                flex-wrap: wrap;
+            }
+
+            nav ul li button {
+                padding: 0.5em 1em;
+                font-size: 0.9em;
+                border: 2px solid rgba(255,255,255,0.5);
+                border-radius: 0.8em;
+                color: #fff;
+                background: transparent;
+            }
+
+            nav ul li button:hover,
+            nav ul li button.active {
+                border-color: #00aaff;
+                box-shadow: 0 0 15px #00aaff, 0 0 30px #00aaff inset;
+                background: rgba(0,170,255,0.1);
+            }
+
+            /* Se eliminó la referencia al botón de teléfono */
+            .contact-buttons .gmail {
+                display: none !important;
+            }
+
+            .text h2 { font-size: 1.8em !important; }
+            .text h3 { font-size: 2.5em !important; }
+            .text p { font-size: 0.95em !important; }
+            .text a { font-size: 13px !important; }
+        }
+    </style>
+</head>
+
+<body>
+    <section class="showcase">
+        <div class="bg-waves"></div>
+
+        <header>
+            <h2 class="logo">
+                <img src="LOGO (2).png" alt="Logo Empresa" class="logo-img">
+            </h2>
+
+            <div class="container">
+                <nav>
+                    <ul>
+                        <li><button class="active" onclick="window.location.href='index.html'">Información</button></li>
+                        <li><button onclick="location.href='servicios.html'">Servicios</button></li>
+                        <li><button onclick="location.href='productos.html'">Marcas</button></li>
+                        <li><button onclick="location.href='marcas.html'">¿Quienes somos?</button></li>
+                        <li><button onclick="location.href='contacto.html'">Contacto</button></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <div class="overlay"></div>
+
+        <div class="text">
+            <h2>Equipo</h2>
+            <h3>y servicios <br> profesionales</h3>
+            <p>Proveemos soluciones integrales de tecnología, ofreciendo equipos de hardware y software junto
+                con servicios especializados para potenciar la eficiencia y servicios empresariales.</p>
+
+            <a href="servicios.html">Descubre más</a> 
+        </div>
+
+        <div class="contact-buttons">
+            <a href="https://t.me/eldiegocomgt" class="contact-btn telegram" target="_blank" title="Telegram">
+                <i class="fab fa-telegram-plane"></i>
+            </a>
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=sac@eldiego.com.gt&su=Solicitud%20de%20información&body=Buen%20día,%20me%20gustaría%20recibir%20información%20sobre%20sus%20productos%20y%20servicios."
+                class="contact-btn gmail" target="_blank" title="Enviar correo">
+                <i class="fas fa-envelope"></i>
+            </a>
+            <a href="https://www.facebook.com/ElDiego.com.gt/" class="contact-btn facebook" target="_blank" title="Facebook">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://wa.me/50224704912?text=Buen%20día,%20me%20gustaría%20recibir%20información%20sobre%20sus%20productos%20y%20servicios."
+                class="contact-btn whatsapp whatsapp-right" target="_blank" title="WhatsApp">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+        </div>
+        
+    </section>
+
+    <script>
+        // Resalta automáticamente el botón activo según la URL
+        const buttons = document.querySelectorAll('nav ul li button');
+        const current = window.location.pathname.split("/").pop();
+        buttons.forEach(btn => {
+            const page = btn.getAttribute('onclick')?.match(/'(.+?)'/);
+            if(page && page[1] === current) btn.classList.add('active');
+        });
+    </script>
+
+    <script src="main.js"></script>
+    
+</body>
+</html>

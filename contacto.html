@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="icon" type="image/png" href="ICO.png">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - ElDiego.com</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ==== RESET ==== */
+        * { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI', sans-serif; }
+        body { background: linear-gradient(135deg, #0d2d3a, #072433, #084766, #0b2030); }
+
+        /* ==== HEADER ==== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            /* Ajustado a 40px 100px para que coincida con otras páginas */
+            padding: 40px 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0,0,0,0.7);
+            z-index: 9999;
+            transition: opacity 0.6s ease, transform 0.6s ease;
+            opacity: 1;
+        }
+        header.hidden {
+            opacity: 0;
+            transform: translateY(-100%);
+            pointer-events: none;
+        }
+        /* LOGO: TAMAÑO AJUSTADO A 110PX */
+        .logo-img { height: 110px; }
+
+        /* ==== BOTONES NAV ==== */
+        nav ul { list-style: none; display: flex; gap: 15px; }
+        nav ul li button {
+            padding: 10px 20px;
+            text-transform: uppercase;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 500;
+            color: #ffffffb3;
+            background: transparent;
+            cursor: pointer;
+            border: 1px solid #ffffff80;
+            transition: 0.5s ease;
+        }
+        nav ul li button:hover,
+        nav ul li button:focus,
+        nav ul li button.active {
+            color: #ffffff;
+            background: #008cff;
+            border: 1px solid #008cff;
+            text-shadow: 0 0 5px #ffffff,0 0 10px #ffffff,0 0 20px #ffffff;
+            box-shadow: 0 0 5px #008cff,0 0 20px #008cff,0 0 50px #008cff,0 0 100px #008cff;
+        }
+
+        /* ==== FONDO ANIMADO ==== */
+        .bg-waves {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+            background: linear-gradient(45deg, #0d2d3a, #0b2030, #084766, #072433);
+            background-size: 600% 600%;
+            animation: gradientShift 20s ease infinite;
+        }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* ==== FORMULARIO CENTRADO ==== */
+        .contact-main-container {
+            max-width: 500px; 
+            /* Aumentamos el margen superior para compensar el header más grande */
+            margin: 180px auto 0 auto; 
+            width: 100%;
+            padding: 0 1rem;
+            z-index: 5;
+        }
+        
+        .contact-form-container {
+            display: flex;
+            justify-content: center; 
+            margin: 0 auto;
+            width: 100%;
+            padding: 0;
+            z-index: 5;
+        }
+
+        .contact-box {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            border-radius: 24px;
+            padding: 28px;
+            max-width: 400px;
+            width: 100%;
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.2),
+                        0 0 40px rgba(0, 255, 255, 0.2),
+                        0 0 60px rgba(0, 255, 255, 0.2);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            position: relative;
+            animation: glow 2.5s ease-in-out infinite alternate;
+        }
+        @keyframes glow {
+            0% { box-shadow: 0 0 5px rgba(0, 255, 255, 0.2),
+                         0 0 10px rgba(0, 255, 255, 0.2),
+                         0 0 20px rgba(0, 255, 255, 0.2); }
+            50% { box-shadow: 0 0 15px rgba(0, 255, 255, 0.4),
+                         0 0 30px rgba(0, 255, 255, 0.3),
+                         0 0 50px rgba(0, 255, 255, 0.25); }
+            100% { box-shadow: 0 0 5px rgba(0, 255, 255, 0.2),
+                           0 0 10px rgba(0, 255, 255, 0.2),
+                           0 0 20px rgba(0, 255, 255, 0.2); }
+        }
+        .contact-box .header {
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .contact-box input,
+        .contact-box textarea {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            font-size: 14px;
+            outline: none;
+        }
+        .contact-box input::placeholder,
+        .contact-box textarea::placeholder {
+            color: #ffffffaa;
+        }
+        .contact-box input:focus,
+        .contact-box textarea:focus { border: 1px solid #fff; }
+        .contact-box textarea { height: 80px; resize: none; }
+        .contact-box button {
+            width: 100%;
+            height: 40px;
+            border: none;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            background: #0f4c81;
+            color: white;
+            transition: 0.3s;
+        }
+        .contact-box button:hover { background: #1e5ca8; }
+
+        .contact-intro {
+            text-align: center;
+            color: #ffffffcc;
+            font-size: 20px;
+            margin: 0 auto 1.5rem auto;
+            line-height: 1.5;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        .contact-intro strong { color: #23b4f5; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ==== WHATSAPP BUTTON (Añadido para completar la página) ==== */
+        .contact-buttons { position: fixed; bottom: 50px; right: 50px; z-index: 10000; }
+        .contact-btn { 
+            display: flex; justify-content: center; align-items: center; 
+            width: 70px; height: 70px; border-radius: 50%; 
+            background: #25d366; color: #fff; text-decoration: none; 
+            font-size: 2rem; transition: transform 0.3s, box-shadow 0.3s; 
+        }
+        .contact-btn:hover { transform: scale(1.2); box-shadow: 0 0 20px #25d366,0 0 40px #25d366; }
+
+
+        /* ==== RESPONSIVE ==== */
+        @media (max-width: 1024px) {
+            header { padding: 20px 20px; }
+            .logo-img { height: 90px; }
+            .contact-main-container { margin-top: 140px; }
+        }
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 10px 10px; 
+            }
+            header nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 5px;
+            }
+            header nav ul li button {
+                padding: 5px 8px; 
+                font-size: 13px;
+            }
+            .contact-main-container { margin-top: 230px; padding: 1rem; }
+            .contact-intro { font-size: 14px; max-width: 90%; text-align: center; }
+            .contact-box { max-width: 350px; width: 95%; }
+            .contact-buttons { bottom: 20px; right: 20px; }
+            .contact-btn { width: 60px; height: 60px; font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-waves"></div>
+
+    <header id="main-header">
+        <h2 class="logo">
+            <img src="LOGO (2).png" alt="Logo Empresa" class="logo-img">
+        </h2>
+        <nav>
+            <ul>
+                <li><button onclick="window.location.href='index.html'">Información</button></li>
+                <li><button onclick="location.href='servicios.html'">Servicios</button></li>
+                <li><button onclick="location.href='productos.html'">Marcas</button></li>
+                <li><button onclick="window.location.href='marcas.html'">¿Quienes somos?</button></li>
+                <li><button class="active">Contacto</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="contact-main-container">
+        <div class="contact-intro">
+            <p>
+                ¿Desea conocer más sobre nuestros <strong>productos y servicios</strong>? <br>
+                Complete el formulario a continuación y nuestro equipo le brindará una <strong>atención rápida y personalizada</strong>.
+            </p>
+        </div>
+
+        <div class="contact-form-container">
+            <form class="contact-box" id="contactForm">
+                <span class="header">Contáctanos</span>
+                <input type="text" placeholder="Nombre" id="name" required>
+                <input type="text" placeholder="Número de Teléfono" id="phone" required>
+                <input type="email" placeholder="Correo Electrónico" id="email" required>
+                <textarea placeholder="Consulta / Duda" id="message" required></textarea>
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+
+        <div class="contact-buttons">
+            <a href="https://wa.me/50224704912" 
+                class="contact-btn whatsapp whatsapp-right" 
+                target="_blank" 
+                title="WhatsApp">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+        </div>
+    </div>
+    <script>
+    // ==== FORMULARIO ENVÍO ====
+    const form = document.getElementById('contactForm');
+    form.addEventListener('submit', function(e){
+        e.preventDefault();
+        const name = document.getElementById('name').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const message = document.getElementById('message').value.trim();
+        const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+        // Intenta enviar por WhatsApp en móvil y por Gmail en escritorio
+        if(isMobile){
+            const whatsappNumber = "50224704912";
+            // Usamos %0A para saltos de línea en WhatsApp
+            const text = `Hola, quiero solicitar información.%0A%0ANombre: ${name}%0ATeléfono: ${phone}%0ACorreo: ${email}%0AConsulta: ${message}`;
+            window.open(`https://wa.me/${whatsappNumber}?text=${text}`, '_blank');
+        } else {
+            const subject = `Consulta de ${name}`;
+            // Usamos %0D%0A para saltos de línea en el cuerpo del correo
+            const body = `Nombre: ${name}%0D%0ATeléfono: ${phone}%0D%0ACorreo: ${email}%0D%0A%0D%0AConsulta:%0D%0A${message}`;
+            window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=sac@eldiego.com.gt&su=${subject}&body=${body}`, '_blank');
+        }
+    });
+
+    // ==== HEADER SCROLL - MEJORA DE COMPORTAMIENTO ==== 
+    let lastScrollTop = 0;
+    const header = document.getElementById("main-header");
+    const scrollThreshold = 50; // Umbral de píxeles para empezar a ocultar
+
+    window.addEventListener("scroll", function() {
+        let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+        
+        // Oculta solo si bajamos Y hemos pasado el umbral inicial
+        if(currentScroll > lastScrollTop && currentScroll > scrollThreshold){ 
+            header.classList.add("hidden");
+        } 
+        // Muestra si subimos O estamos al inicio de la página
+        else if (currentScroll < lastScrollTop || currentScroll <= scrollThreshold) {
+            header.classList.remove("hidden");
+        }
+
+        lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+    }, false);
+    </script>
+</body>
+</html>
